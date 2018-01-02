@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 
 class Books extends Component{
 
+    static propType = {
+        showBooks: PropType.func.isRequired
+    };
+
     constructor(props){
+
         super(props);
 
         this.state = {
@@ -32,7 +38,7 @@ class Books extends Component{
 
 
     render(){
-        let books = this.state.books;
+        const books = this.props.showBooks;
 
         return (
             <ol className="books-grid">
@@ -41,7 +47,7 @@ class Books extends Component{
                     <li key={book.id}>
                         <div className="book">
                             <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+                                <div className="book-cover" style={{width: 128, height: 188, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}/>
                                 <div className="book-shelf-changer">
                                     <select>
                                         <option value="none" disabled>Move to...</option>
