@@ -28,8 +28,6 @@ class BooksApp extends React.Component {
     this.getBooks('read');
   }
 
-  //TODO: passar como prop para books o tipo de livros que devem ser mostrados
-
   getBooks = (type) =>{
     return BooksAPI.getAll().then((books)=>{
       const fetchedBooks = books.filter(book => book.shelf === type);
