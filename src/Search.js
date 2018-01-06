@@ -34,7 +34,7 @@ class Search extends Component{
             BooksAPI.search(query).then((books) => {
                 if(!books.error){
                     const match = new RegExp(escapeString(query, 'i'));
-                     console.log(books);
+
                     const findedBooks =  books.filter((book)=>{
                         if(match.test(book.title)){
                             return match.test(book.title)
@@ -46,7 +46,7 @@ class Search extends Component{
                             }
                         }
                     } );
-                    console.log(findedBooks);
+
                     this.setState({books: findedBooks});
                 }else{
                     if(books.error === 'empty query'){
