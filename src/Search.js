@@ -29,7 +29,7 @@ class Search extends Component{
             }
         });
 
-        this.searchBooksAndAuthors();
+        this.searchBooksAndAuthors(queryToUpdate);
 
     };
 
@@ -45,8 +45,7 @@ class Search extends Component{
         return books;
     }
 
-    searchBooksAndAuthors(){
-        const {query} = this.state;
+    searchBooksAndAuthors(query){
         if(query.trim() !== ''){
             BooksAPI.search(query).then((books) => {
                 if(!books.error){
@@ -79,7 +78,8 @@ class Search extends Component{
 
             });
         }else{
-            return [];
+            console.log('Empty Search');
+            this.setState({books: []});
         }
     }
 
