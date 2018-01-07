@@ -75,7 +75,7 @@ class BooksApp extends React.Component {
 
 
   renderSearchPage = () =>{
-      return <Search updateBookShelf={this.updateBookShelf}/>
+      return <Search updateBookShelf={this.updateBookShelf} booksAtShelf={this.state.books}/>
   };
 
 

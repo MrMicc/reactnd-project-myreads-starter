@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import escapeString from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI';
 import Books from './Books';
+import PropType from 'prop-types'
 
 class Search extends Component{
 
+    static propType = {
+        updateBookShelf: PropType.func.isRequired,
+        booksAtShelf: PropType.array.isRequired
+    };
 
     constructor(props){
         super(props);
