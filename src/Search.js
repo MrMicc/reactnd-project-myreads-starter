@@ -33,12 +33,26 @@ class Search extends Component{
 
     };
 
+    getShelfOfBook(books){
+        books.forEach((book) => {
+           this.props.booksAtShelf.forEach((bookAtShelf) =>{
+               if(book.id === bookAtShelf.id){
+                   book.shelf = bookAtShelf.shelf;
+               }
+           })
+        });
+
+        return books;
+    }
+
     searchBooksAndAuthors(){
         const {query} = this.state;
         if(query.trim() !== ''){
             BooksAPI.search(query).then((books) => {
                 if(!books.error){
                     const match = new RegExp(escapeString(query, 'i'));
+
+                    books = this.getShelfOfBook(books);
 
                     const findedBooks =  books.filter((book)=>{
                         if(match.test(book.title)){
