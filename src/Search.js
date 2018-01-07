@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import escapeString from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI';
 import Books from './Books';
+import PropType from 'prop-types'
 
 class Search extends Component{
 
+    static propType = {
+        updateBookShelf: PropType.func.isRequired,
+        booksAtShelf: PropType.array.isRequired
+    };
 
     constructor(props){
         super(props);
@@ -24,16 +29,29 @@ class Search extends Component{
             }
         });
 
-        this.searchBooksAndAuthors();
+        this.searchBooksAndAuthors(queryToUpdate);
 
     };
 
-    searchBooksAndAuthors(){
-        const {query} = this.state;
+    getShelfOfBook(books){
+        books.forEach((book) => {
+           this.props.booksAtShelf.forEach((bookAtShelf) =>{
+               if(book.id === bookAtShelf.id){
+                   book.shelf = bookAtShelf.shelf;
+               }
+           })
+        });
+
+        return books;
+    }
+
+    searchBooksAndAuthors(query){
         if(query.trim() !== ''){
             BooksAPI.search(query).then((books) => {
                 if(!books.error){
                     const match = new RegExp(escapeString(query, 'i'));
+
+                    books = this.getShelfOfBook(books);
 
                     const findedBooks =  books.filter((book)=>{
                         if(match.test(book.title)){
@@ -60,7 +78,8 @@ class Search extends Component{
 
             });
         }else{
-            return [];
+            console.log('Empty Search');
+            this.setState({books: []});
         }
     }
 

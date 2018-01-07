@@ -17,9 +17,9 @@ class ListBooksContent extends Component {
         return (
             <div className="list-books-content">
                 <div>
-                    <BooksAtShelf books={books} shelf='currentlyReading' updateBookShelf={this.props.updateBookShelf} shelfTitle='Currently Reading'/>
-                    <BooksAtShelf books={books} shelf='wantToRead' updateBookShelf={this.props.updateBookShelf} shelfTitle='Want to Read'/>
-                    <BooksAtShelf books={books} shelf='read' updateBookShelf={this.props.updateBookShelf} shelfTitle='Read'/>
+                    <BooksAtShelf books={books.filter(book => book.shelf === 'currentlyReading') } updateBookShelf={this.props.updateBookShelf} shelfTitle='Currently Reading'/>
+                    <BooksAtShelf books={books.filter(book => book.shelf === 'wantToRead') }  updateBookShelf={this.props.updateBookShelf} shelfTitle='Want to Read'/>
+                    <BooksAtShelf books={books.filter(book => book.shelf === 'read') } updateBookShelf={this.props.updateBookShelf} shelfTitle='Read'/>
                 </div>
                 <div className="open-search">
                     <Link to='/search'>Add a book</Link>
