@@ -13,7 +13,7 @@ class Books extends Component{
 
     getAuthor = (book) =>{
         if(book.authors !== '' &&  Array.isArray(book.authors)){
-            return book.authors.map(author => author+' ');
+            return book.authors.map(author => '"'+author+'" ');
         }else {
             return book.authors;
         }

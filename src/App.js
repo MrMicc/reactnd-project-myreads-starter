@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooksContent from './ListBooksContent';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch} from 'react-router-dom';
 import Search from './Search';
 
 class BooksApp extends React.Component {
@@ -82,9 +82,13 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-          <Route exact path='/' render={this.renderListBooks}/>
+          <Switch>
+              <Route exact path='/' render={this.renderListBooks}/>
 
-          <Route path='/search' render={this.renderSearchPage}/>
+              <Route path='/search' render={this.renderSearchPage}/>
+
+              <Route render={this.renderListBooks}/>
+          </Switch>
       </div>
     )
   }

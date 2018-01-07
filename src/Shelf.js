@@ -24,7 +24,7 @@ class Shelf extends Component{
         return(
             <div className="book-shelf-changer">
                 <select onChange={this.handleChange} defaultValue={this.getShelfValue()}>
-                    <option value="none" disabled>Move to...</option>
+                    <option value="disable" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
